@@ -34,7 +34,8 @@ class BookService:
             update_data_dict = update_data.model_dump()
             for k, v in update_data_dict.items():
                 setattr(book_to_update, k, v)
-
+            
+            book_to_update.updated_at = datetime.now()
             await session.commit()
             return book_to_update
         else:
